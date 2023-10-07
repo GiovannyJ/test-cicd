@@ -3,6 +3,8 @@ import(
 	"net/http"
 	"github.com/gin-gonic/gin"
 	"errors"
+	"fmt"
+	"os"
 )
 //using gin framework for simple api
 
@@ -62,6 +64,13 @@ func main(){
 	router := gin.Default()
 	router.GET("/students", getStudents)
 	router.GET("/students/:id", studentByID)
-	router.Run("0.0.0.0:8080")
+	 // Run the server in the background
+	 go func() {
+        if err := router.Run("0.0.0.0:8080"); err != nil {
+            panic(err)
+        }
+    }()
+	pid := os.Getpid()
+	fmt.Println(pid)
 	//use curl ip:port /location to retrive info as json
 }	
