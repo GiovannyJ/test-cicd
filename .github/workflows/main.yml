@@ -1,46 +1,21 @@
-# This is a basic workflow to help you get started with Actions
-name: Build and Run Go Application on Raspberry Pi
-
+name: go workflow
 on:
-  # Triggers the workflow on push events but only for the main branch
   push:
-    branches: [main]
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
+
   build:
-    runs-on: self-hosted
-
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.18  # Specify your desired Go version
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
 
-      - name: Build Go Application
-        run: go build -o myapp api_driver.go  # Replace 'main.go' with your Go application's entry file
-
-      - name: Upload Go Application Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: myapp
-          path: ./myapp
-
-  deploy:
-    runs-on: self-hosted
-    needs: build
-
-    steps:
-      - name: Download Go Application Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: myapp
-          path: .
-
-      - name: Make Go Application Executable
-        run: chmod +x myapp
-
-      - name: Run Go Application
-        run: ./myapp
+    - name: Build
+      run: go build -v ./...
