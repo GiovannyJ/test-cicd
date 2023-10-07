@@ -6,7 +6,6 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
     runs-on: self-hosted
     steps:
@@ -25,12 +24,19 @@ jobs:
         with:
           name: app
           path: ./app 
-  
+
   deploy:
     needs: build
     runs-on: self-hosted
 
     steps:
+      - name: Check for New Push
+        run: |
+          if [ -n "$(git log -1 --since='5 minutes ago' --oneline)" ]; then
+            echo "There is a new push. Aborting deployment."
+            exit 0
+          fi
+
       - name: Download Go Application Artifact
         uses: actions/download-artifact@v2
         with:
@@ -42,14 +48,3 @@ jobs:
 
       - name: Run Go Application
         run: ./app
-  
-  stop-process:
-    runs-on: self-hosted
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Execute stop_process.sh
-        run: |
-          chmod +x stop_process.sh  # Make the script executable
-          ./stop_process.sh  # Execute the script
