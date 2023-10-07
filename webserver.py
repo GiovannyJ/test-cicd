@@ -1,16 +1,14 @@
-import http.server
-import socketserver
+from flask import Flask
 
-# Define the port to run the server on
-PORT = 4040
+app = Flask(__name__)
 
-# Create a handler to serve the HTML files
-handler = http.server.SimpleHTTPRequestHandler
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
 
-# Change the default index.html to hello.html
-handler.extensions_map[".html"] = "text/html"
+@app.route('/newfile')
+def newfile():
+    return 'This is a new file page.'
 
-# Create a socket server
-with socketserver.TCPServer(("", PORT), handler) as httpd:
-    print(f"Serving on port {PORT}")
-    httpd.serve_forever()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=4040)
