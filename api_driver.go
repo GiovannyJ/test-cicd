@@ -29,14 +29,11 @@ func getStudents(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, students)
 }
 
-
-//getting the student by id
 func studentByID(c *gin.Context){
-	//var id type inference and is the json param for id
+
 	id := c.Param("id")
 	student, err := getStudentByID(id)
 
-	//if not nil then say that it isnt found
 	if err != nil {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "Student ID not found"})
 		return
