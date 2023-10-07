@@ -13,8 +13,7 @@ type student struct {
 	NAME    string `json:"name"`
 	MAJOR   string `json:"major"`
 	GRADYEAR int   `json:"gradyear"`
-}
-//declaring varible student is a list of vals w struct of student
+} 
 var students = []student{
 	{ID: "1", NAME:"Gio", MAJOR: "CS", GRADYEAR:2025},
 	{ID: "2", NAME:"Nicole", MAJOR: "Math", GRADYEAR:2025},
