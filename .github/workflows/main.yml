@@ -27,7 +27,7 @@ jobs:
       # Setup virtual env, install dependencies
       - name: Create Go env
         run: |
-          go build api_driver.go -o app
+          go build -o app api_driver.go
   deploy:
     runs-on: self-hosted
     needs: build
