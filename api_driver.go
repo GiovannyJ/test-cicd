@@ -14,6 +14,7 @@ type student struct {
 	MAJOR   string `json:"major"`
 	GRADYEAR int   `json:"gradyear"`
 } 
+
 var students = []student{
 	{ID: "1", NAME:"Gio", MAJOR: "CS", GRADYEAR:2025},
 	{ID: "2", NAME:"Nicole", MAJOR: "Math", GRADYEAR:2025},
