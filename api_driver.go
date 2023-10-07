@@ -22,6 +22,7 @@ var students = []student{
 	{ID: "4", NAME:"Mike", MAJOR: "Business", GRADYEAR:2024},
 	{ID: "5", NAME:"Yigit", MAJOR: "CS", GRADYEAR:2030},
 	{ID: "6", NAME:"Carlos", MAJOR: "CS", GRADYEAR:2030},
+	{ID: "7", NAME:"Harrison", MAJOR: "CS", GRADYEAR:2030},
 }
 
 //making function to get student
