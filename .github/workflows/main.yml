@@ -27,7 +27,7 @@ jobs:
       # Setup virtual env, install dependencies
       - name: Create Go env
         run: |
-          go build api_driver.go -o app.exe
+          go build api_driver.go -o app
   deploy:
     runs-on: self-hosted
     needs: build
@@ -36,4 +36,5 @@ jobs:
       # Run gunicorn server
       - name: Run API server
         run: |
-         ./app.exe
+          chmod +x app
+          ./app
