@@ -8,4 +8,4 @@ def hello_world():
 
 @app.route('/newfile')
 def newfile():
-    return 'This is a new file'
+    return 'This is a new file page'
