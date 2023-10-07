@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  build-and-upload:
+  build:
     runs-on: self-hosted
 
     steps:
@@ -28,9 +28,9 @@ jobs:
           name: myapp
           path: ./myapp
 
-  download-and-run:
+  deploy:
     runs-on: self-hosted
-    needs: build-and-upload
+    needs: build
 
     steps:
       - name: Download Go Application Artifact
