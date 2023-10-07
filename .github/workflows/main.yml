@@ -12,7 +12,6 @@ on:
 env:
   FLASK_APP: webserver.py
 
-
 jobs:
   deploy:
     runs-on: self-hosted
