@@ -27,18 +27,12 @@ jobs:
       # Setup virtual env, install dependencies
       - name: Create Go env
         run: |
-          go mod init test-cicd
-          go mod tidy
           go build api_driver.go -o app.exe
   deploy:
     runs-on: self-hosted
     needs: build
     
     steps:
-      # Kill gunicorn server, if running already
-      - name: Kill gunicorn
-        run: pkill gunicorn || true
-
       # Run gunicorn server
       - name: Run API server
         run: |
