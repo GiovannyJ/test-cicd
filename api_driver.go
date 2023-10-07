@@ -60,6 +60,6 @@ func main(){
 	router := gin.Default()
 	router.GET("/students", getStudents)
 	router.GET("/students/:id", studentByID)
-	router.Run("localhost:8080")
+	router.Run("0.0.0.0:8080")
 	//use curl ip:port /location to retrive info as json
 }	
